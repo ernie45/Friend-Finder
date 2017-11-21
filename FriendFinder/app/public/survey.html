@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<title>Survey</title>
+</head>
+<body>
+	<div class="container">
+		<div>Survey Questions</div>
+		<h3>About You</h3>
+		<div>Name (Required)</div>
+		<div class="input-group">
+      		<input type="text" class="form-control" placeholder="Name..." id="name">
+    	</div>
+    	<div>Link to Photo Image (Required)</div>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="Link..." id="picture-link">
+    	</div>
+    	<h3>Question 1</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q1">
+    	</div>
+    	<h3>Question 2</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q2">
+    	</div>
+    	<h3>Question 3</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q3">
+    	</div>
+    	<h3>Question 4</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q4">
+    	</div>
+    	<h3>Question 5</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q5">
+    	</div>
+    	<h3>Question 6</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q6">
+    	</div>
+    	<h3>Question 7</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q7">
+    	</div>
+    	<h3>Question 8</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q8">
+    	</div>
+    	<h3>Question 9</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q9">
+    	</div>
+    	<h3>Question 10</h3>
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="1(Strongly Disagree), 2, 3, 4, 5(Strongly Agree)" id="q10">
+    	</div>
+    	<button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button">Block level button</button>
+    	<div class="left api-links">
+	      <a href="#">API Friends List</a> | <a href="#">GitHub Repo</a>
+	    </div>
+	</div>
+	<script>
+		$("document").ready(function(){
+			var friends = require("./Friends");
+			$("#submit-button").on("click", function(event){
+				event.preventDefault();
+				var scores = []; 
+				var name = $("#name").val().trim();
+				var picture = $("#picture-link").val().trim(); 
+				var q1 = parseInt($("#q1").val().trim());
+				scores.push(q1);
+				var q2 = parseInt($("#q2").val().trim());
+				scores.push(q2);
+				var q3 = parseInt($("#q3").val().trim());
+				scores.push(q3);
+				var q4 = parseInt($("#q4").val().trim());
+				scores.push(q4);
+				var q5 = parseInt($("#q5").val().trim());
+				scores.push(q5);
+				var q6 = parseInt($("#q6").val().trim());
+				scores.push(q6);
+				var q7 = parseInt($("#q7").val().trim());
+				scores.push(q7);
+				var q8 = parseInt($("#q8").val().trim());
+				scores.push(q8);
+				var q9 = parseInt($("#q9").val().trim());
+				scores.push(q9);
+				var q10 = parseInt($("#q10").val().trim());
+				var soul = friends(name, picture, scores);
+				console.log(soul.name + " " + soul.picture + " " + soul.scores);
+			});
+		});
+	</script> 
+</body>
+</html>
