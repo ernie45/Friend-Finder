@@ -89,11 +89,15 @@
 				var q9 = parseInt($("#q9").val().trim());
 				scores.push(q9);
 				var q10 = parseInt($("#q10").val().trim());
-				var soul = friends(name, picture, scores);
-				data.push(name);
-        data.push(picture);
-        data.push(scores);
-        module.exports = data;
+        $.ajax({
+          type: "POST",
+          url: "/api/friends",
+          data: {name: name, picture: picture, scores: scores},
+          success: function(){
+            console.log("yep");
+          },
+          dataType: "application/json"
+        });
 			});
 		});
 	</script> 

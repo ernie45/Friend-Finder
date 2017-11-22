@@ -1,11 +1,13 @@
-function Friends(name, photo, scores){
+var Friend = require("./friend");
+function Friends(){
 	if (this instanceof Friends){
-		this.name = name;
-		this.photo = photo;
-		this.scores = scores;
+		this.all = []; 
 	}
 	else{
-		return new Friends(name, photo, scores);
+		return new Friends();
 	}
 };
+Friends.prototype.add = function(body){
+	this.all.push(new Friend(body.name, body.photo, body.scores));
+}
 module.exports = Friends; 
