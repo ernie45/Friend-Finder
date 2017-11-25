@@ -1,11 +1,11 @@
-function Friend(name, photo, scores){
+function Friend(name, picture, scores){
 	if (this instanceof Friend){
 		this.name = name;
-		this.photo = photo;
+		this.picture = picture;
 		this.scores = scores;
 	}
 	else{
-		return new Friend(name, photo, scores);
+		return new Friend(name, picture, scores);
 	}
 };
 module.exports = Friend;
