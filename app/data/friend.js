@@ -1,4 +1,6 @@
+/** Creat the friend object */
 function Friend(name, picture, scores){
+	/** Allows creation of new object without the new keyword */
 	if (this instanceof Friend){
 		this.name = name;
 		this.picture = picture;
@@ -8,4 +10,5 @@ function Friend(name, picture, scores){
 		return new Friend(name, picture, scores);
 	}
 };
+/** Export the object */
 module.exports = Friend;
