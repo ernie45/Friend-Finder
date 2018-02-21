@@ -14,7 +14,9 @@ var app = express();
 var PORT = process.env.PORT || 8080; 
 app.use(bodyParser.urlencoded({extended: false}));   
 app.use(bodyParser.json());
+/** Provide a static file to route from there */
 app.use(express.static("app/public"));
+app.use(htmlRoutes);
 app.use(apiRoutes);
 
 /** Listen to the port opening */

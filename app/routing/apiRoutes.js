@@ -6,16 +6,18 @@ var router = express.Router();
 var path = require("path");
 
 /** Routing to the api */
-router.get("/api/friends", function(req, res){
+router.get("/api/friendslist", function(req, res){
 	/** Show all the users */
-	res.json(friends.getUsers());
+	res.json(friends.getAllUsers());
 });
 /** Posting to the api */
 router.post("/api/friends", function(req, res){
-	req.body.scores = req.body["scores[]"];
-	friends.add(req.body);
-	/** Render a json with the match to the friend */
-	res.json(friends.match());
+	/** Capture data passed into the post request */
+	name = req.body.name;
+	picture = req.body.picture;
+	scores = req.body["scores[]"];
+	console.log(name + " " + picture + " " + scores);
+	friends.addFriend({name: name, picture: picture, scores: scores});
 });
 
 /** Export the router */

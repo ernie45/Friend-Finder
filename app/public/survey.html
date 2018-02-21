@@ -109,28 +109,30 @@
       </select>
     	<button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button">Submit</button>
     	<div class="left api-links">
-	      <a href="api/friends">API Friends List</a> | <a href="https://github.com/ernie45/Friend-Finder">GitHub Repo</a>
+	      <a href="api/friendslist">API Friends List</a> | <a href="https://github.com/ernie45/Friend-Finder">GitHub Repo</a>
 	    </div>
-	</div>
+  </div>
+  
+
+
+
+  
 	<script>
 		$("document").ready(function(){
 			$("#submit-button").on("click", function(event){
         event.preventDefault();
-        var dropDowns = $(".dropDown");
-        if ($("#name").val().trim === "" || $("#picture-link") === ""){
-          alert("Please fill out the entire form before submitting");
-          return;
-        }
-        for (var i = 0; i < dropDowns.length; i++){
-          if (dropDowns[i].options[dropDowns[i].selectedIndex].value === "Select Option"){
-            alert ("Please fill out the entire form before submitting");
-            break;
-          }
-        }
+
+        /** Create space for data */
         var data = [];
-				var scores = []; 
-				var name = $("#name").val().trim();
-				var picture = $("#picture-link").val().trim(); 
+        var scores = []; 
+
+        /** Grab the name input into the input field */
+        var name = $("#name").val().trim();
+        /** Grab the picture input into the input field */
+        var picture = $("#picture-link").val().trim(); 
+        
+        /** Grab hold of the user's answers to each question */
+        /** Push each score into the scores array */
 				var q1 = parseInt($("#q1").val().trim());
 				scores.push(q1);
 				var q2 = parseInt($("#q2").val().trim());
@@ -149,14 +151,37 @@
 				scores.push(q8);
 				var q9 = parseInt($("#q9").val().trim());
 				scores.push(q9);
-				var q10 = parseInt($("#q10").val().trim());
-        $.ajax({
-          type: "POST",
-          url: "/api/friends",
-          data: {name: name, picture: picture, scores: scores},
-          success: function(){
-            console.log("yep");
+        var q10 = parseInt($("#q10").val().trim());
+        
+        /** Refer to all the dropDowns */
+        /** These are the ones that show the user's options to answer */
+        var dropDowns = $(".dropDown");
+        /** This application should make sure that name and picture are definitely provided*/
+        /** If either name, or picture fields are empty */
+        if ($("#name").val().trim === "" || $("#picture-link") === ""){
+          /** Let the user know to input name and/or picture */
+          alert("Please fill out the entire form before submitting");
+          /** Return to beginning of application */
+          return;
+        }
+
+        /** If both name and picture are provided*/
+        /** Traverse the length of the dropDowns */
+        /** Since there are 10 dropDowns in this page, then length is 10 */
+        for (var i = 0; i < dropDowns.length; i++){
+          /** And if for the current dropDown element's selected value is "Select Option" */
+          /** In other words, if the user hasn't selected an option */
+          if (dropDowns[i].options[dropDowns[i].selectedIndex].value === "Select Option"){
+            /** Let the user know to provide an answer */
+            alert ("Please fill out the entire form before submitting");
+            break;
           }
+        }
+        $.ajax("api/friends", {
+          type: "POST",
+          data: {name: name, picture: picture, scores: scores}
+        }).then(function(){
+          console.log("You suck");
         });
 			});
 		});

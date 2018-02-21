@@ -1,4 +1,4 @@
-/** Creat the friend object */
+/** Create the friend object */
 function Friend(name, picture, scores){
 	/** Allows creation of new object without the new keyword */
 	if (this instanceof Friend){

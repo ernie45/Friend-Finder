@@ -10,18 +10,22 @@ function Friends(){
 		return new Friends();
 	}
 };
+
 /** Inherit the add function, which allows pushing of a new friend object to the imaginary database */
-Friends.prototype.add = function(body){
+Friends.prototype.addFriend = function(body){
 	this.all.push(new Friend(body.name, body.picture, body.scores));
 };
 
+
 /** Allow access to all the users in the object database */
-Friends.prototype.getUsers = function(){
+Friends.prototype.getAllUsers = function(){
+	/** Return the array of objects (all) found inside the Friends object */
 	return this.all;
 };
 
-/** Match the user to the appropriate match */
+/** Find an appropriate match for the user */
 Friends.prototype.match = function(){
+	/** Return the user's match */
 	return this.all[0];
 };
 
